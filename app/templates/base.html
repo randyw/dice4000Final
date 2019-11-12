@@ -1,0 +1,54 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - DICE4000 Final Project</title>
+        {% else %}
+        <title>DICE4000 Final Project</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            Application:
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <br>
+            Current User: {{current_user.email}}
+            {% endif %}
+        </div>
+        <hr>
+        {% if current_user.is_authenticated %}
+        <div>
+            Tools: 
+            <br>
+            Organizations:
+            <a href="{{ url_for('search_orgs') }}">Search</a>
+            <!-- Did this null check of current_user.permission_level first  -->
+            {% if current_user.permission_level and current_user.permission_level > 0 %}
+            <a href="{{ url_for('create_org') }}">Create</a>
+            {% endif %}
+            {% if current_user.permission_level == 2 %}
+            <br>
+            Users: 
+            <a href="{{ url_for('search_users') }}">Search</a>
+            <a href="{{ url_for('create_user') }}">Create</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% endif %}
+    
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

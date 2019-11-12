@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>
+    Search Users
+</h1>
+<h2>Results: {{ results_count }}</h2>
+<table>
+    <tr valign="top">
+        <td>View</td>
+        <td>User Email</td>
+        <td>Permission Level</td>
+    </tr>
+    {% for user in users %}
+        {% include '_user.html' %}
+    {% endfor %}
+</table>
+
+{% if prev_url %}
+<a href="{{ prev_url }}">Previous</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">Next</a>
+{% endif %}
+
+{% endblock %}

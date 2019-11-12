@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+        Viewing User: {{user.email}}
+    </h1>
+    <h2>
+        <a href="{{ url_for('edit_user', userid=user.id) }}">Edit</a>
+    </h2>
+    
+    <p>
+        Email: {{user.email}}
+    </p>
+    <p>
+        Permission Level: 
+        {% if user.permission_level ==  2 %}
+            Administrator
+        {% elif user.permission_level == 1 %}
+            Faculty
+        {% elif user.permission_level == 0 %}
+            Student
+        {% else %}
+            Other
+        {% endif %}
+    </p>
+{% endblock %}

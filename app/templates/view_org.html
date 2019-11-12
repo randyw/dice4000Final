@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+        Viewing Organization: {{org.name}}
+    </h1>
+
+    {% if current_user.permission_level > 0 %}
+    <h2>
+        <a href="{{ url_for('edit_org', orgid=org.id) }}">Edit</a>
+    </h2>
+    {% endif %}
+    
+    <p>Name: {{org.name}}</p>
+    <p>Background Check Required: {{org.bg_check_required}} </p>
+    <p>Description: {{org.description}} </p>
+    <p>Keywords: {{org.keywords}} </p>
+    <p>Number of volunteers placed: {{org.num_volunteers}} </p>
+    <p>Mission Statement: {{org.mission_statement}} </p>
+    <p>Website: <a href="https://{{ org.website }}"> {{org.website}} </a> </p>
+    <p>Primary Contact Name: {{org.primary_contact_name}} </p>
+    <p>Primary Contact Title: {{org.primary_contact_title}} </p>
+    <p>Primary Contact Email: <a href="mailto:{{org.primary_contact_email}}"> {{org.primary_contact_email}} </a></p>
+    <p>Primary Contact Phone: {{org.primary_contact_phone}} </p>
+    <p>Street Address: {{org.street_address}} </p>
+    <p>ZIP Code: {{org.zip_code}} </p>
+    <p>Alternate Contact Name: {{org.alt_contact_name}} </p>
+    <p>Alternate Contact Email: <a href="mailto:{{ org.alt_contact_email }}"> {{org.alt_contact_email}} </a></p>
+    <p>Application Link: <a href="https://{{ org.application_url }}"> {{org.application_url}} </a> </p>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+        Editing User: {{user.email}}
+    </h1>
+    <h2>
+        <a href="{{ url_for('view_user', userid=user.id) }}">View</a>
+        <a href="{{ url_for('delete_user', userid=user.id) }}">Delete</a>
+    </h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{form.permission_level.label}}<br>
+            {{form.permission_level(class="form-control")}}<br>
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+    <tr valign="top">
+        <td><a href="{{ url_for('view_user', userid=user.id) }}">View</a></td>
+        <td>{{user.email}}</td>
+        <td>
+            <!-- This lets users selec their permission level. To use initially, once Admins have been established,
+            remove the Admistrator level from choices -->
+                {% if user.permission_level ==  2 %}
+                    Administrator
+                {% elif user.permission_level == 1 %}
+                    Faculty
+                {% elif user.permission_level == 0 %}
+                    Student
+                {% else %}
+                    Other
+                {% endif %}
+            </td>
+    
+    </tr>
